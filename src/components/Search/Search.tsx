@@ -27,7 +27,7 @@ const Input = styled.input.attrs({
   border: none;
   outline: none;
   color: var(--color-text);
-  background-color: var(--colors-ui-base);
+  background-color: var(--colors-bg);
   min-width: calc(100% - 80px);
   font-size: var(--fs-md);
 `;
