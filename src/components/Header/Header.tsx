@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Container } from "../../components/Container/Container";
 import { IoMoon, IoMoonOutline } from "react-icons/io5";
+import { Link, LinkProps } from "react-router-dom";
 
 const HeaderStyled = styled.header`
   box-shadow: var(--shadow);
@@ -15,10 +16,11 @@ const Wrapper = styled.div`
   padding: 2rem 0;
 `;
 
-const Title = styled.h1`
+const Title = styled(Link)<LinkProps>`
   color: var(--color-text);
-  font-size: var(--fs-md);
+  font-size: var(--fs-lg);
   font-weight: var(--fw-400);
+  text-decoration: none;
 `;
 
 const ThemeSwitcher = styled.div`
@@ -44,7 +46,7 @@ export const Header: React.FC = () => {
     <HeaderStyled>
       <Container>
         <Wrapper>
-          <Title>Where in the world?</Title>
+          <Title to="/">Where in the world?</Title>
           <ThemeSwitcher onClick={toggleTheme}>
             {theme === "light" ? (
               <IoMoonOutline size={24} />
