@@ -5,5 +5,13 @@ export interface Country {
   name: string;
   population: number;
   region: string;
+  currencies: Currency[];
+  borders: string[];
   onClick: () => void;
+}
+
+export interface Currency {
+  code: string;
+  name: string;
+  symbol: string;
 }

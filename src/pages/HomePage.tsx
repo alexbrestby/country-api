@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { ALL_COUNTRIES } from "../../config";
+import { ALL_COUNTRIES } from "../config";
 import { Controls } from "../components/Controls/Controls";
 import { CountryList } from "../components/CoutryList/CountryList";
 import { Country } from "../types/types";

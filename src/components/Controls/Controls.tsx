@@ -3,13 +3,18 @@ import styled from "styled-components";
 import { Search } from "../Search/Search";
 import { CustomSelect } from "../CustomSelect/CustomSelect";
 
-const options = [
+const options: OptionType[] = [
   { value: "Africa", label: "Africa" },
   { value: "Americas", label: "Americas" },
   { value: "Asia", label: "Asia" },
   { value: "Europe", label: "Europe" },
   { value: "Oceania", label: "Oceania" },
 ];
+
+type OptionType = {
+  value: string;
+  label: string;
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,7 +49,7 @@ export const Controls: React.FC<ControlsProps> = ({ handleSearch }) => {
         isSearchable={false}
         value={options.find((option) => option.value === region) || null}
         onChange={(selectedOption) =>
-          setRegion(selectedOption ? selectedOption.value : "")
+          setRegion((selectedOption as OptionType | null)?.value || "")
         }
       />
     </Wrapper>
