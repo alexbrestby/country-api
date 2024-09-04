@@ -1,15 +1,16 @@
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { Search } from "../Search/Search";
 import { CustomSelect } from "../CustomSelect/CustomSelect";
-import React, { useState } from "react";
-import styled from "styled-components";
 
 const options = [
   { value: "Africa", label: "Africa" },
-  { value: "America", label: "America" },
+  { value: "Americas", label: "Americas" },
   { value: "Asia", label: "Asia" },
   { value: "Europe", label: "Europe" },
   { value: "Oceania", label: "Oceania" },
 ];
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,9 +22,18 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Controls: React.FC = () => {
+type ControlsProps = {
+  handleSearch: (search: string, region: string) => void;
+};
+
+export const Controls: React.FC<ControlsProps> = ({ handleSearch }) => {
   const [search, setSearch] = useState<string>("");
   const [region, setRegion] = useState<string>("");
+
+  useEffect(() => {
+    handleSearch(search, region);
+  }, [search, region, handleSearch]);
+
   return (
     <Wrapper>
       <Search search={search} setSearch={setSearch} />
@@ -32,8 +42,10 @@ export const Controls: React.FC = () => {
         placeholder="Filter by Region"
         isClearable
         isSearchable={false}
-        value={region}
-        onChange={setRegion}
+        value={options.find((option) => option.value === region) || null}
+        onChange={(selectedOption) =>
+          setRegion(selectedOption ? selectedOption.value : "")
+        }
       />
     </Wrapper>
   );
